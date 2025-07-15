@@ -74,20 +74,21 @@ The system is architected using LangChain to orchestrate a modular RAG pipeline,
 - An operational Ollama instance
 
 
-Engineering Decisions and Rationale
-Local-First vs. API-Based Architecture: The decision to utilize Ollama was strategic, prioritizing data privacy, operational autonomy, and cost control over the raw power of large-scale proprietary models. This architecture is ideal for sensitive data environments.
+### Engineering Decisions and Rationale
 
-Model Selection and Resource Management: Initial prototyping with llama3:8b revealed significant inference latency on consumer-grade hardware. phi3:mini was selected to optimize the user experience by drastically reducing response times, accepting a minor trade-off in linguistic complexity for a major gain in performance. This highlights the critical balance between model capability and hardware constraints in applied AI.
+-**Local-First vs. API-Based Architecture:** The decision to utilize Ollama was strategic, prioritizing data privacy, operational autonomy, and cost control over the raw power of large-scale proprietary models. This architecture is ideal for sensitive data environments.
 
-Persistent Vector Storage: The use of ChromaDB's persist_directory is a crucial optimization. It decouples the computationally expensive ingestion pipeline from the main application loop, ensuring a fast and responsive startup time for the end-user after the initial data processing.
+-**Model Selection and Resource Management:** Initial prototyping with llama3:8b revealed significant inference latency on consumer-grade hardware. phi3:mini was selected to optimize the user experience by drastically reducing response times, accepting a minor trade-off in linguistic complexity for a major gain in performance. This highlights the critical balance between model capability and hardware constraints in applied AI.
 
-Semantic Chunking Strategy: The RecursiveCharacterTextSplitter was chosen to minimize semantic boundary fragmentation during the chunking process. By attempting to split along natural text structures (paragraphs, lines) before resorting to character-level splits, it produces more contextually coherent chunks, which directly improves the quality of context provided to the LLM.
+-**Persistent Vector Storage:** The use of ChromaDB's persist_directory is a crucial optimization. It decouples the computationally expensive ingestion pipeline from the main application loop, ensuring a fast and responsive startup time for the end-user after the initial data processing.
 
-Roadmap and Future Work
-Advanced Retrieval Strategies: Investigate and implement more sophisticated retrieval mechanisms, such as HyDE (Hypothetical Document Embeddings) or a Multi-Query Retriever, to enhance retrieval accuracy for complex user queries.
+-**Semantic Chunking Strategy:** The RecursiveCharacterTextSplitter was chosen to minimize semantic boundary fragmentation during the chunking process. By attempting to split along natural text structures (paragraphs, lines) before resorting to character-level splits, it produces more contextually coherent chunks, which directly improves the quality of context provided to the LLM.
 
-Containerization: Package the application and its dependencies using Docker to ensure consistent, reproducible deployments across different environments.
+### Roadmap and Future Work
+-**Advanced Retrieval Strategies:** Investigate and implement more sophisticated retrieval mechanisms, such as HyDE (Hypothetical Document Embeddings) or a Multi-Query Retriever, to enhance retrieval accuracy for complex user queries.
 
-Enhanced User Interface: Augment the Streamlit front-end with features such as conversation history, user feedback mechanisms, and the ability to select different source document sets.
+-**Containerization:** Package the application and its dependencies using Docker to ensure consistent, reproducible deployments across different environments.
 
-Performance Benchmarking: Conduct formal benchmarking to evaluate the impact of GPU acceleration on LLM inference latency and explore further optimizations.
+-**Enhanced User Interface:** Augment the Streamlit front-end with features such as conversation history, user feedback mechanisms, and the ability to select different source document sets.
+
+-**Performance Benchmarking**:** Conduct formal benchmarking to evaluate the impact of GPU acceleration on LLM inference latency and explore further optimizations.
