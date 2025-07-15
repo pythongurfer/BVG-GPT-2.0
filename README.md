@@ -10,6 +10,8 @@ The following demonstrates the system's interactive interface. A user query is s
 
 ![Demo](assets/demo.gif)
 
+<img src="assets/demo.gif" alt="Demo animation" width="600"/>
+
 ---
 
 ## Key Capabilities
@@ -70,14 +72,6 @@ The system is architected using LangChain to orchestrate a modular RAG pipeline,
 
 - Python 3.10+
 - An operational Ollama instance
-
-### Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
 
 
 Engineering Decisions and Rationale
